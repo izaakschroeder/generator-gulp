@@ -1,47 +1,31 @@
 
 var generators = require('yeoman-generator');
 var path = require('path');
-var open = require('open');
+var util = require('yeoman-util');
+
+// TODO fix this.
 
 module.exports = generators.Base.extend({
 	initializing: function() {
 
 	},
-	prompting: function () {
-		var done = this.async();
-		this.prompt({
-			type: 'input',
-			name: 'name',
-			message: 'Your task name'
-		}, function (answers) {
-			var taskPath = 'tasks';
-			this.name = answers.name;
-			this.file = this.destinationPath(
-				path.join(taskPath, this.name + '.task.js')
-			);
-			done();
-		}.bind(this));
+	prompting: util.prompt([{
+		type: 'input',
+		name: 'name',
+		message: 'Your task name'
+	}]),
+	writing: {
+		task: util.copy(function(env) {
+			return {
+				source: 'es6.task.js',
+				destination: env.file,
+				overwrite: false
+			};
+		})
 	},
-	writing: function() {
-		var es6 = true;
-
-		if (es6) {
-			template = 'es6.task.js';
-		} else {
-			template = 'generic.task.js';
-		}
-
-		if (!this.fs.exists(this.file)) {
-			this.fs.copyTpl(
-				this.templatePath(template),
-				this.file,
-				{
-					name: this.name
-				}
-			);
-		}
-	},
-	end: function() {
-		open(this.file);
+	end: {
+		task: util.open(function(env) {
+			return env.file;
+		})
 	}
 });

@@ -1,0 +1,14 @@
+{
+	"devDependencies": {
+		"gulp": "gulpjs/gulp#4.0",
+		"gulp-hub": "frankwallis/gulp-hub#4.0",
+
+		<% if (env) { %>
+		"dotenv": "^1.1.0",
+		<% } %>
+
+		<% if (babel) { %>
+		"babel-core": "^5.5.6"
+		<% } %>
+	}
+}

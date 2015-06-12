@@ -1,10 +1,10 @@
 {
-	"name": "generator-gulp",
+	"name": "@metalab/generator-gulp",
 	"version": "0.1.0",
 	"description": "",
 	"keywords": [ "yeoman-generator" ],
 	"dependencies": {
 		"yeoman-generator": "^0.20.1",
-		"open": "^0.0.5"
+		"yeoman-util": "^0.2.0"
 	}
 }

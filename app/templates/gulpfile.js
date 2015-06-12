@@ -20,7 +20,7 @@ dotenv.load({ silent: true });
 
 <% if (babel) { %>
 // Allow for ES6 in task files.
-require("babel/register");
+require("babel-core/register");
 <% } %>
 
 // Load all tasks into the registry.
